@@ -1,15 +1,12 @@
-import React,{useState} from "react";
+import React from "react";
 import { postData } from "../../helpers/postData";
+
+import { Formik,Form, Field, ErrorMessage } from "formik";
 
 export const Register = () => {
 
-const [values, setValues] = useState({name:'',email:'',password:''})
-
- const {name,email,password}= values
-
-
 const signUp = (e)=>{
-dssddsdsdsdsds
+
  e.preventDefault()
  if(values){
    postData(values)
@@ -30,53 +27,63 @@ dssddsdsdsdsds
  }
  }
 
-  const handleChange = ({target})=>{
-    setValues({
-      ...values,
-      [target.name]:target.value
-    })
-  }
-
   return (
     <div id="register" className="animate__animated animate__fadeIncontainer-fluid d-flex align-items-center justify-content-center p-2">
-      
-      <form 
-      // action="http://localhost:3100/auth/register"
-      method="post"
-      className="d-flex flex-column gap-3 p-3 text-center w-75 border shadow m-auto">
-        <h5>Sign up</h5>
-        <input
-          className="form-control text-center"
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleOnChange}
-          placeholder="name"
-        />
-        <input
-          className="form-control text-center"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleOnChange}
-          placeholder="E-mail"
-        />
-        <input
-          className="form-control text-center"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleOnChange}
-          placeholder="*******"
-        />
-        <button
-         type="submit" 
-         className="btn btn-primary w-100"
-         onClick={signUp}
-         >
-          Sign up
-        </button>
-      </form>
+<Formik
+       initialValues={{ email: '', password: '' }}
+       validate={values => {
+         const errors = {};
+         if (!values.email) {
+           errors.email = 'Required';
+         } else if (
+           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+         ) {
+           errors.email = 'Invalid email address';
+         }
+         return errors;
+       }}
+       onSubmit={(values, { setSubmitting }) => {
+         setTimeout(() => {
+           alert(JSON.stringify(values, null, 2));
+           setSubmitting(false);
+         }, 400);
+       }}
+     >
+       {({
+         values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+         /* and other goodies */
+       }) => (
+         <form onSubmit={handleSubmit}>
+           <input
+             type="email"
+             name="email"
+             className="form-control"
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.email}
+           />
+           {errors.email && touched.email && errors.email}
+           <input
+             type="password"
+             className="form-control"
+             name="password"
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.password}
+           />
+           {errors.password && touched.password && errors.password}
+           <button type="submit" disabled={isSubmitting}>
+             Submit
+           </button>
+         </form>
+       )}
+     </Formik>
     </div>
   );
 };
