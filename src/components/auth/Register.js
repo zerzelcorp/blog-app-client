@@ -9,7 +9,7 @@ const [values, setValues] = useState({name:'',email:'',password:''})
 
 
 const signUp = (e)=>{
-
+dssddsdsdsdsds
  e.preventDefault()
  if(values){
    postData(values)
