@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { Post } from '../post/Post'
+import { Post } from './Post'
 
 export const Profile = () => {
 

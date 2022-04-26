@@ -1,14 +1,32 @@
-import React ,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import React ,{useState,useEffect} from 'react'
 
+import { Link, useParams } from 'react-router-dom'
+
+import { getData } from '../../helpers/getData'
 
 export const Account = ({name}) => {
+
+const id = useParams()
+
+console.log(id)
+
+const api_url=`http://localhost:3100//user/${id}`
+
+const [user, setUser] = useState({})
 
 const [edit, setEdit] = useState(false)
 
 const showEdit=()=>{
   setEdit(!edit)
 }
+
+// useEffect(() => {
+// getData(api_url)
+// .then(u=>{
+//   // setUser(u.data.res)
+//   console.log(u)
+// })
+// }, [api_url])
 
 
   return (

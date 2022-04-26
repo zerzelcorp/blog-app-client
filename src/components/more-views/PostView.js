@@ -1,16 +1,33 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import { useParams } from 'react-router-dom'
 
 export const PostView = () => {
-  return (
-      
-<div className='container-fluid h-auto d-flex flex-column gap-3 justify-content-center'>
 
-<Post 
-author="Messi" 
-title="La Vida de Famoso" 
-description="security standards that protect information in the health care industry. HIPAA violations can lead to civil penalties and fines depending on severity. Certain types of violations can also result in criminal penalties, which may include prison time"
-date="hace 10 horas"
-/>
+// const api_url=`http://localhost:3100/post/${_id}`
+
+const id = useParams()
+
+console.log(id)
+
+  // const [post, setPost] = useState([])
+  
+  // useEffect(() => {
+  // getData(api_url)
+  // .then(data=>{
+  //   setPost(data.data.res)
+  //   console.log(posts)
+  // })
+  // }, [api_url])
+
+  return (
+
+<div className='container-fluid h-auto d-flex flex-column gap-3 justify-content-center'>
+<h2>Post</h2>
+{/* {
+post?.map(p=>(
+  <Post key={p._id} {...p}/>
+))
+} */}
 
 <div className='d-flex flex-column gap-3'>
 <form className='container-sm w-50 m-3 d-flex flex-column gap-3 border shadow m-2'>

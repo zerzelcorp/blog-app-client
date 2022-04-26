@@ -11,19 +11,19 @@ export const NavBar = () => {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
      <li className="nav-item active">
-        <Link to="/home" className="nav-link">Home<span className="sr-only"></span></Link>
+        <Link to="/" className="nav-link">Home<span className="sr-only"></span></Link>
       </li> 
       <li className="nav-item">
-        <Link className="nav-link" to="/myprofile">My Profile</Link>
+        <Link className="nav-link" to="/profile">My Profile</Link>
       </li>
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My account
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link className="dropdown-item" to="account">Config</Link>
+          <Link className="dropdown-item" to="/account">Config</Link>
           <div className="dropdown-divider"></div>
-          <Link className="dropdown-item" to="/auth/login">Log out</Link>
+          <Link className="dropdown-item" to="/">Log out</Link>
         </div>
       </li>
 

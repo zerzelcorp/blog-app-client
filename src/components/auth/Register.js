@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Register = () => {
   return (
@@ -23,9 +24,12 @@ export const Register = () => {
           name="password"
           placeholder="*******"
         />
-        <button type="submit" className="btn btn-primary w-100">
-          Login
-        </button>
+        <Link
+         to="/"
+         type="submit" 
+         className="btn btn-primary w-100">
+          Sign up
+        </Link>
       </form>
     </div>
   );
