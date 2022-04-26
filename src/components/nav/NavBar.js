@@ -23,7 +23,7 @@ export const NavBar = () => {
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <Link className="dropdown-item" to="/account">Config</Link>
           <div className="dropdown-divider"></div>
-          <Link className="dropdown-item" to="/">Log out</Link>
+          <Link className="dropdown-item" to="/login">Log out</Link>
         </div>
       </li>
 
