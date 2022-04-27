@@ -1,13 +1,15 @@
+import axios from 'axios'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const handleLogin=(e)=>{
     e.preventDefault()
     navigate('/')
+    // axios.post('http://localhost:3100/login',)
   }
 
   return (

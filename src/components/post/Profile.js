@@ -1,32 +1,50 @@
 import React from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { postData } from '../../helpers/postData'
+import { useForm } from '../hooks/useForm'
 import { Post } from './Post'
 
 export const Profile = () => {
 
-const navigate= useNavigate()
+const id= useParams()
 
-const makePost =(e)=>{
+console.log(id)
+
+
+const initialForm ={author:'guest',title:'',description:''}
+
+const [formValues,handleChange,formReset] = useForm(initialForm)
+
+const {author,title,description} = formValues
+
+const publicPost =(e)=>{
 e.preventDefault()
-navigate("/home")
-  }
+try {
+  postData('http://localhost:3100/profile-create-post',formValues)
+} catch (error) {
+  console.log("Error:",error)
+}
+formReset(initialForm)
+}
 
   return (
     <>
 <div id="profile" className='d-flex flex-column gap-3 w-100 h-auto border shadow animate__animated animate__fadeIn'>
 
 <div className='border shadow d-flex flex-column align-items-center justify.content-center m-2'>
+
 <form className="container-sm w-50 m-3 d-flex flex-column gap-3">
 <h6 className='text-center'>Post About Something!</h6>
-    <input className='form-control' type="text" placeholder='Post title..'/>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    <button type="submit" onClick={makePost} className='btn btn-primary w-100'>Post</button>
+    <input className='form-control' type="text" value={title} onChange={handleChange} name="title" placeholder='Post title..'/>
+    <textarea class="form-control" name="description" value={description} onChange={handleChange} rows="3" placeholder='...'></textarea>
+    <button type="submit" onClick={publicPost} className='btn btn-primary w-100'>Post</button>
 </form>
 </div>
 
   <h5 className='text-center'>My Posts</h5>
 
 <div className='d-flex flex-column align-items-center justify-content-center w-75 m-auto'>
+
 <Post 
   author="you" 
   title="La musica interestellar" 

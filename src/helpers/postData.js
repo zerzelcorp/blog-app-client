@@ -1,9 +1,8 @@
 import axios from 'axios'
 
-export const postData = (body) => {
+export const postData = (url,body) => {
 
-axios.post("http://localhost:3100/auth/register",body)
-
+axios.post(url,body)
 .then(function (response) {
     console.log(response);
     })

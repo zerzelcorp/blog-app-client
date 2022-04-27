@@ -1,0 +1,83 @@
+     <Formik
+       initialValues={{ email: '', password: '' }}
+       validate={values => {
+         const errors = {};
+         if (!values.email) {
+           errors.email = 'Required';
+         } else if (
+           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+         ) {
+           errors.email = 'Invalid email address';
+         }
+         return errors;
+       }}
+       onSubmit={(values, { setSubmitting }) => {
+         setTimeout(() => {
+           alert(JSON.stringify(values, null, 2));
+           setSubmitting(false);
+         }, 400);
+       }}
+     >
+       {({
+         values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+         /* and other goodies */
+       }) => (
+         <form 
+        className="d-flex flex-column gap-3 p-3 text-center w-75 border shadow m-auto"
+         onSubmit={handleSubmit}
+         >
+         <h5>Sign up</h5>
+           <input
+             type="email"
+             name="email"
+             className="form-control"
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.email}
+           />
+           {errors.email && touched.email && errors.email}
+           <input
+             type="password"
+             className="form-control"
+             name="password"
+             onChange={handleChange}
+             onBlur={handleBlur}
+             value={values.password}
+           />
+           {errors.password && touched.password && errors.password}
+           <button type="submit" disabled={isSubmitting}>
+             Submit
+           </button>
+         </form>
+       )}
+     </Formik>
+
+
+
+const signUp = (e)=>{
+
+    e.preventDefault()
+    if(values){
+      postData(`http://localhost:3100/auth/register`,values)
+     //  fetch(`http://localhost:3100/auth/register`,{
+     //    headers: {
+     //      'Content-Type': 'application/json'
+     //    },
+     //     method:"POST",
+     //     body:JSON.stringify(values)
+     //  })
+     //  .then(res=>{
+     //    res.json()
+     //  })
+     //  .then(data=>console.log('Success:',data))
+     //  .catch(e=>{
+     //    console.warn('Error:',e);
+     //  });
+    }
+    }

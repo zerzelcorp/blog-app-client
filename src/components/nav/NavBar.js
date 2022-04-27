@@ -12,10 +12,15 @@ export const NavBar = () => {
     <ul className="navbar-nav mr-auto">
      <li className="nav-item active">
         <Link to="/" className="nav-link">Home<span className="sr-only"></span></Link>
-      </li> 
+     </li> 
+     <li className="nav-item active">
+        <Link to="/login" className="nav-link">Login<span className="sr-only"></span></Link>
+     </li> 
+
       <li className="nav-item">
         <Link className="nav-link" to="/profile">My Profile</Link>
       </li>
+
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My account
